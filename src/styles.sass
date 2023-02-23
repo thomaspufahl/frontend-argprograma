@@ -1,10 +1,16 @@
-:root
-	--white: #f0f0f0
-	--white-forte: #fefefe
-	--dark: #0b081b
-	--orange: #f8a347
-	--red: #b6162e
-	--orange-gradient: linear-gradient(90deg, #b6162e 0%, #f8a347 100%)
+// :root
+// 	--white: #f0f0f0
+// 	--white-forte: #fefefe
+// 	--dark: #0b081b
+// 	--orange: #f8a347
+// 	--red: #b6162e
+// 	--orange-gradient: linear-gradient(90deg, #b6162e 0%, #f8a347 100%)
+$white: #f0f0f0
+$white-forte: #fefefe
+$dark: #0b081b
+$orange: #f8a347
+$red: #b6162e
+$orange-gradient: linear-gradient(90deg, #b6162e 0%, #f8a347 100%)
 
 // RESETS
 * 
@@ -15,8 +21,8 @@
 	-moz-osx-font-smoothing: grayscale
 
 body 
-	background-color: var(--dark)
-	color: var(--white)
+	background-color: $dark
+	color: $white
 	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
 	font-size: 16px
 	line-height: 1.5
@@ -35,13 +41,13 @@ li
 // PRESETS
 .border-orange-weak
 	height: 1px
-	background: var(--orange-gradient)
+	background: $orange-gradient
 	opacity: .5
 
 .border-orange-strong 
 	width: 100%
 	height: 1px
-	background: var(--orange-gradient)
+	background: $orange-gradient
 	opacity: 1
 	margin: 0
 	padding: 0
