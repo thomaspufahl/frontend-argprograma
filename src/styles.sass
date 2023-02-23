@@ -25,6 +25,10 @@ body
 li 
 	list-style: none
 
+a 
+	text-decoration: none
+	color: v.$white
+
 // PRESETS
 .border-orange-weak
 	height: 1px
@@ -40,3 +44,11 @@ li
 	padding: 0
 	border: 0
 	vertical-align: baseline
+.item
+	a
+		&:hover
+			color: v.$orange
+	&:hover
+		transform: scale(1.1)
+		transition: all .3s ease-in-out
+		
