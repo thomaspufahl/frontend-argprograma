@@ -16,7 +16,7 @@ export class UserService {
 	constructor(private readonly api: ApiService, private readonly http: HttpClient) { }
 
 	public getUsers() {
-		return this.http.get(this.api.getApiUrlUser()).subscribe();
+		return this.http.get(this.api.getApiUrlUser());
 	}
 
 	public createUser(username: String, password: String) {
