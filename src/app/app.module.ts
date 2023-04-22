@@ -9,8 +9,10 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LogoComponent } from '@shared/components/logo/logo.component';
 
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token.interceptor';
 
 @NgModule({
 	declarations: [
@@ -22,13 +24,15 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
-		CoreModule
+		CoreModule,
+		LogoComponent
 	],
 	providers: [
 		{
 			provide: LocationStrategy,
 			useClass: PathLocationStrategy
-		}
+		},
+		HttpTokenInterceptorProvider
 	],
 	bootstrap: [AppComponent]
 })

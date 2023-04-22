@@ -1,12 +1,9 @@
 <header>
 	<nav>
-		<div class="logo">
-			<img src="../../../assets/images/logo.png" alt="Argentina programa logo">
-			<span>Thomas Pufahl</span>
-		</div>
+		<app-logo></app-logo>
 		<ul>
-			<li class="item"><a href="">Login</a></li>
-			<li class="item"><a href="">Register</a></li>
+			<li class="item"><button type="button" (click)="goToLogIn()">Log in</button></li>
+			<li class="item"><button type="button" (click)="onLogOut()">Log out</button></li>
 		</ul>
 	</nav>
 	<div class="border-orange-strong"></div>
