@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Person } from '@core/models/person.model';
 
 @Component({
@@ -7,6 +7,12 @@ import { Person } from '@core/models/person.model';
 	styleUrls: ['./profile.component.sass']
 })
 export class ProfileComponent implements OnInit {
+
+	@Input() person!: Person;
+	@Input() img!: String;
+
+
+	constructor() { }
 
 	ngOnInit(): void {
 
