@@ -12,7 +12,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { LogoComponent } from '@shared/components/logo/logo.component';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token.interceptor';
+import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token/http-token.interceptor';
 
 @NgModule({
 	declarations: [
