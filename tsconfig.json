@@ -11,6 +11,7 @@
 		"@modules/*": ["app/modules/*"],
 		"@shared/*": ["app/shared/*"],
 		"@components/*": ["app/shared/components/*"],
+		"@models/*": ["app/core/models/*"], 
 	},
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
