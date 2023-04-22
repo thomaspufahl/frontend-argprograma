@@ -7,7 +7,7 @@ export class ApiService {
 
 	constructor() { }
 
-	public getApiUrlUser(): string {
-		return 'http://localhost:8080/person';
+	public getApiUrl(): string {
+		return 'http://localhost:8080/';
 	}
 }
