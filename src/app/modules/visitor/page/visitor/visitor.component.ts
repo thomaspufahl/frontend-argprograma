@@ -9,7 +9,7 @@ import { Person } from '@models/person.model';
 export class VisitorComponent implements OnInit {
 
 	defaultPerson: Person = new Person('firstname', 'lastname', 'description');
-	defaultImg: String = 'https://picsum.photos/1774/998';
+	defaultImg: String = 'https://picsum.photos/1920/1080';
 
 	persons: Person[] = []
 
