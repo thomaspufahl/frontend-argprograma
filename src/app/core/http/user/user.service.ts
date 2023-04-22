@@ -16,18 +16,10 @@ export class UserService {
 	constructor(private readonly api: ApiService, private readonly http: HttpClient) { }
 
 	public getUsers() {
-		return this.http.get(this.api.getApiUrlUser());
-	}
-
-	public createUser(username: String, password: String) {
-		let user: User = {
-			username: username,
-			password: password
-		}
-		return this.http.post(this.api.getApiUrlUser(), user).subscribe();
+		return this.http.get(this.api.getApiUrl() + '/user').subscribe();
 	}
 
 	public deleteAllUsers() {
-		return this.http.delete(this.api.getApiUrlUser()).subscribe();
+		return this.http.delete(this.api.getApiUrl() + '/user').subscribe();
 	}
 }
