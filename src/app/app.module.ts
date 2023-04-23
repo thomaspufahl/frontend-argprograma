@@ -9,7 +9,7 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
 
-import { LogoComponent } from '@shared/components/logo/logo.component';
+import { LogoComponent } from './sharedd/components/logo/logo.component';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token/http-token.interceptor';

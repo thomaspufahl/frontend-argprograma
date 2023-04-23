@@ -8,7 +8,7 @@ import { VisitorRoutingModule } from './visitor-routing.module';
 import { VisitorComponent } from './page/visitor/visitor.component';
 
 
-import { ProfileComponent } from '@shared/components/profile/profile.component';
+import { ProfileComponent } from '../../sharedd/components/profile/profile.component';
 import { LoginComponent } from './page/login/login.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { RegisterFormComponent } from './components/register-form/register-form.component';
