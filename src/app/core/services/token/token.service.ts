@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
-const TOKEN_KEY = 'AuthToken';
-const EMAIL_KEY = 'AuthEmail';
-const AUTHORITIES_KEY = 'AuthAuthorities';
+const TOKEN_KEY = 'access_token';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,10 +10,21 @@ export class TokenService {
 
 	roles: Array<string> = [];
 
-	constructor() { }
+	constructor(private readonly jwtHelper: JwtHelperService) { }
 
-	public getToken(): String {
-		return sessionStorage.getItem(TOKEN_KEY) || '';
+	existsToken(): boolean {
+		return tokenGetter() ? true : false;
+	}
+
+	isExpired() {
+		const isExpired = this.jwtHelper.isTokenExpired(tokenGetter());
+
+		if (isExpired) {
+			this.removeToken();
+			return true;
+		}
+
+		return false;
 	}
 
 	public setToken(token: string): void {
@@ -22,31 +32,11 @@ export class TokenService {
 		window.sessionStorage.setItem(TOKEN_KEY, token);
 	}
 
-	public getEmail(): string {
-		return sessionStorage.getItem(EMAIL_KEY) || '';
-	}
-
-	public setEmail(email: string): void {
-		window.sessionStorage.removeItem(EMAIL_KEY);
-		window.sessionStorage.setItem(EMAIL_KEY, email);
-	}
-
-	public getAuthorities(): string[] {
-		this.roles = [];
-		if (sessionStorage.getItem(AUTHORITIES_KEY)) {
-			JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY) || '{}').forEach((authority: { authority: string; }) => {
-				this.roles.push(authority.authority);
-			});
-		}
-		return this.roles;
-	}
-
-	public setAuthorities(authorities: string[]): void {
-		window.sessionStorage.removeItem(AUTHORITIES_KEY);
-		window.sessionStorage.setItem(AUTHORITIES_KEY, JSON.stringify(authorities));
-	}
-
 	public removeToken(): void {
 		window.sessionStorage.clear();
 	}
+}
+
+export function tokenGetter() {
+	return sessionStorage.getItem('access_token');
 }
