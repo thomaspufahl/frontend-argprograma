@@ -16,8 +16,5 @@ export class VisitorComponent implements OnInit {
 	constructor(private readonly personSvc: PersonService) { }
 
 	ngOnInit(): void {
-		this.personSvc.getList().subscribe((data) => {
-			console.log(data);
-		});
 	}
 }
