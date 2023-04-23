@@ -7,7 +7,7 @@ import {
 	HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenService } from '../../services/token/token.service';
+import { TokenService, tokenGetter } from '../../services/token/token.service';
 
 @Injectable()
 export class HttpTokenInterceptor implements HttpInterceptor {
@@ -17,7 +17,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 	intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		let tokenRequest = request;
 
-		const token = this.tokenSvc.getToken();
+		const token = tokenGetter();
 
 		if (token != null) {
 			tokenRequest = request.clone({

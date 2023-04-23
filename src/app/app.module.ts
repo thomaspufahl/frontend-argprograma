@@ -13,6 +13,8 @@ import { LogoComponent } from '@shared/components/logo/logo.component';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token/http-token.interceptor';
+import { JwtModule } from '@auth0/angular-jwt';
+import { tokenGetter } from '@core/services/token/token.service';
 
 @NgModule({
 	declarations: [
@@ -25,7 +27,13 @@ import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token/http
 		BrowserModule,
 		AppRoutingModule,
 		CoreModule,
-		LogoComponent
+		LogoComponent,
+		JwtModule.forRoot({
+			config: {
+				tokenGetter: tokenGetter,
+				allowedDomains: ['localhost:4200'],
+			}
+		})
 	],
 	providers: [
 		{

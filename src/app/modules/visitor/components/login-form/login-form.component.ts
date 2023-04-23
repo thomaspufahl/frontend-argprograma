@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/authentication/auth.service';
-import { TokenService } from '@core/services/token/token.service';
+import { TokenService, tokenGetter } from '@core/services/token/token.service';
 import { User } from '@models/user.model';
 
 @Component({
@@ -25,7 +25,7 @@ export class LoginFormComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		if (this.tokenSvc.getToken()) {
+		if (tokenGetter()) {
 			this.isLogged = true;
 			this.isLogginFail = false;
 		}
