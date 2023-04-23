@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-
 
 @Component({
 	selector: 'app-logo',
-	standalone: true,
-	imports: [CommonModule],
 	template: `
 		<div (click)="goHome()">
 			<img src="../../../assets/images/logo.png" alt="Argentina programa logo">
@@ -21,5 +17,4 @@ export class LogoComponent {
 	goHome(): void {
 		this.router.navigate(['/']);
 	}
-
 }

@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { CoreModule } from '@core/core.module';
+import { SharedModule } from './shared/shared.module';
+
 import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
-
-import { LogoComponent } from './sharedd/components/logo/logo.component';
 
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { HttpTokenInterceptorProvider } from '@core/interceptors/http-token/http-token.interceptor';
@@ -21,13 +21,13 @@ import { tokenGetter } from '@core/services/token/token.service';
 		AppComponent,
 		HeaderComponent,
 		MainComponent,
-		FooterComponent
+		FooterComponent,
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		CoreModule,
-		LogoComponent,
+		SharedModule,
 		JwtModule.forRoot({
 			config: {
 				tokenGetter: tokenGetter,
