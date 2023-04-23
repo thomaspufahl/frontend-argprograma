@@ -1,6 +1,6 @@
 export class Person {
 
-	id?: number;
+	id!: number;
 	firstname!: String;
 	lastname!: String;
 	description!: String;
