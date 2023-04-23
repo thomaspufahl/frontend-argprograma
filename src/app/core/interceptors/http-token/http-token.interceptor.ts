@@ -16,16 +16,21 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
 	intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 		let tokenRequest = request;
-
 		const token = tokenGetter();
 
-		if (token != null) {
-			tokenRequest = request.clone({
-				setHeaders: {
-					Authorization: `Bearer ${token}`
-				}
-			});
+		if (!this.tokenSvc.existsToken()) {
+			return next.handle(tokenRequest);
 		}
+
+		if (this.tokenSvc.isExpired()) {
+			return next.handle(tokenRequest)
+		}
+
+		tokenRequest = request.clone({
+			setHeaders: {
+				Authorization: `Bearer ${token}`
+			}
+		});
 
 		return next.handle(tokenRequest);
 	}
