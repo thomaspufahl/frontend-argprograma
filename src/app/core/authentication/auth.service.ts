@@ -18,7 +18,6 @@ export class AuthService {
 	}
 
 	public authenticate(user: User): Observable<Jwt> {
-		console.log("logeando")
 		return this.http.post<Jwt>(this.authURL + 'authenticate', {
 			"email": user.email,
 			"password": user.password
@@ -26,3 +25,6 @@ export class AuthService {
 	}
 
 }
+
+//[{"authority":"ADMIN"}]
+// AuthAuthorities

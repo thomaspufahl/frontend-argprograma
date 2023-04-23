@@ -10,9 +10,10 @@ import { User } from '@models/user.model';
 	styleUrls: ['./login-form.component.sass']
 })
 export class LoginFormComponent implements OnInit {
-
+	// No uso esto para nada
 	isLogged: boolean = false;
 	isLogginFail: boolean = false;
+
 	user!: User;
 
 	errorMessage!: String;
@@ -33,16 +34,12 @@ export class LoginFormComponent implements OnInit {
 	onLogin(loginForm: any): void {
 		this.user = new User(loginForm.value.email, loginForm.value.password);
 		this.authSvc.authenticate(this.user).subscribe(
-			user => {
+			userData => {
 				this.isLogged = true;
 				this.isLogginFail = false;
 
-				this.tokenSvc.setToken(user.token);
-				this.tokenSvc.setEmail(user.email);
-				console.log("TOKEN: EMAIL", user.email);
-				this.tokenSvc.setAuthorities(user.authorities);
-				console.log("TOKEN: AUTHORITIES", user.authorities);
-				this.router.navigate(['/']); // Navigate to /ADMIN
+				this.tokenSvc.setToken(userData.token);
+				this.router.navigate(['/logged']);
 			},
 			err => {
 				this.isLogged = false;
