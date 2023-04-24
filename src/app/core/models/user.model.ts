@@ -1,8 +1,11 @@
+import { Person } from "./person.model";
+
 export class User {
 
 	email!: string;
 	password!: string;
 	authorities!: string[];
+	person!: Person;
 
 	constructor(email: string, password: string) {
 		this.email = email;
@@ -21,6 +24,10 @@ export class User {
 		this.authorities = authorities;
 	}
 
+	setPerson(person: Person): void {
+		this.person = person;
+	}
+
 	getEmail(): string {
 		return this.email;
 	}
@@ -31,5 +38,9 @@ export class User {
 
 	getAuthorities(): string[] {
 		return this.authorities;
+	}
+
+	getPerson(): Person {
+		return this.person;
 	}
 }

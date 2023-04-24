@@ -1,6 +1,5 @@
 export class Person {
 
-	id!: number;
 	firstname!: String;
 	lastname!: String;
 	description!: String;
@@ -11,9 +10,6 @@ export class Person {
 		this.description = description;
 	}
 
-	setId(id: number) {
-		this.id = id;
-	}
 	setFirstname(firstname: String) {
 		this.firstname = firstname;
 	}
@@ -24,11 +20,6 @@ export class Person {
 		this.description = description;
 	}
 
-
-
-	getId() {
-		return this.id;
-	}
 	getFirstname() {
 		return this.firstname;
 	}

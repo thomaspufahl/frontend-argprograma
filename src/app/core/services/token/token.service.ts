@@ -35,6 +35,10 @@ export class TokenService {
 	public removeToken(): void {
 		window.sessionStorage.clear();
 	}
+
+	public getSubject(): string {
+		return this.jwtHelper.decodeToken(tokenGetter()!).sub;
+	}
 }
 
 export function tokenGetter() {

@@ -1,5 +1,18 @@
 <section>
 	<img src="{{ img }}" alt="profile bbanner">
-	<h1> {{person.firstname}} {{person.lastname}} </h1>
-	<p> {{ person.description }} </p>
+
+	<h1>{{person.firstname}} {{person.lastname}}</h1>
+	<p>{{ person.description }}</p>
+</section>
+<section class="editor-box" *ngIf="isLogged">
+	<dialog #dialog>
+		<form method="dialog" #updateForm="ngForm" (ngSubmit)="onFakeUpdate(updateForm)" novalidate>
+			<input type="text" name="firstname" placeholder="Firstname" ngModel required>
+			<input type="text" name="lastname" placeholder="Lastname" ngModel required>
+			<input type="text-area" name="description" placeholder="Description" ngModel required>
+			<button type="submit">Update</button>
+			<button type="reset" (click)="dialog.close()">Cancel</button>
+		</form>
+	</dialog>
+	<button type="button" (click)="dialog.show()">Update this area</button>
 </section>
