@@ -23,6 +23,7 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 		}
 
 		if (this.tokenSvc.isExpired()) {
+			alert('La sesion expiro, por favor inicie sesion nuevamente');
 			return next.handle(tokenRequest)
 		}
 
