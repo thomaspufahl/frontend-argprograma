@@ -25,6 +25,3 @@ export class AuthService {
 	}
 
 }
-
-//[{"authority":"ADMIN"}]
-// AuthAuthorities
