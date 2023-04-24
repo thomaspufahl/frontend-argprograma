@@ -4,30 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Person } from '@models/person.model';
 import { Observable } from 'rxjs';
 
-export class PersonDTO {
-	id?: number;
-	firstname!: String;
-	lastname!: String;
-	description!: String;
-
-	constructor(firstname: String, lastname: String, description: String) {
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.description = description;
-	}
-
-	setFirstname(firstname: String) { this.firstname = firstname; }
-	setLastname(lastname: String) { this.lastname = lastname; }
-	setDescription(description: String) { this.description = description; }
-	setId(id: number) { this.id = id; }
-
-	getId() { return this.id; }
-	getFirstname() { return this.firstname; }
-	getLastname() { return this.lastname; }
-	getDescription() { return this.description; }
-}
-
-
 @Injectable({
 	providedIn: 'root'
 })

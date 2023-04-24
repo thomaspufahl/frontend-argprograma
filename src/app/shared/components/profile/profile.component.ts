@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '@app/core/http/user/user.service';
 import { TokenService } from '@app/core/services/token/token.service';
-import { PersonService, PersonDTO } from '@core/http/person/person.service';
+import { PersonService } from '@core/http/person/person.service';
 import { Person } from '@models/person.model'
 
 @Component({
