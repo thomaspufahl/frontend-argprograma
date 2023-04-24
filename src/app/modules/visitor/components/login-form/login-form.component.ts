@@ -10,13 +10,8 @@ import { User } from '@models/user.model';
 	styleUrls: ['./login-form.component.sass']
 })
 export class LoginFormComponent implements OnInit {
-	// No uso esto para nada
-	isLogged: boolean = false;
-	isLogginFail: boolean = false;
 
 	user!: User;
-
-	errorMessage!: String;
 
 	constructor(
 		private readonly tokenSvc: TokenService,
@@ -25,27 +20,17 @@ export class LoginFormComponent implements OnInit {
 	) { }
 
 	ngOnInit(): void {
-		if (tokenGetter()) {
-			this.isLogged = true;
-			this.isLogginFail = false;
-		}
 	}
 
-	onLogin(loginForm: any): void {
-		this.user = new User(loginForm.value.email, loginForm.value.password);
+	onLogin(form: any): void {
+		this.user = new User(form.value.email, form.value.password);
 		this.authSvc.authenticate(this.user).subscribe(
 			userData => {
-				this.isLogged = true;
-				this.isLogginFail = false;
-
 				this.tokenSvc.setToken(userData.token);
 				this.router.navigate(['/logged']);
 			},
 			err => {
-				this.isLogged = false;
-				this.isLogginFail = true;
-				this.errorMessage = err.error.message;
-				console.log(this.errorMessage);
+				console.log(err);
 			}
 		);
 	}

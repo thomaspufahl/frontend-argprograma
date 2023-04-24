@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '@app/core/http/user/user.service';
 import { TokenService } from '@app/core/services/token/token.service';
 import { PersonService } from '@core/http/person/person.service';
 import { Person } from '@models/person.model'
@@ -23,7 +22,6 @@ export class ProfileComponent implements OnInit {
 
 	constructor(
 		private readonly router: Router,
-		private readonly userSvc: UserService,
 		private readonly personSvc: PersonService,
 		private readonly tokenSvc: TokenService,
 	) { }
@@ -31,9 +29,9 @@ export class ProfileComponent implements OnInit {
 	ngOnInit(): void {
 		this.isLogged = this.router.url.includes('logged') ? true : false;
 		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((person: Person) => {
-			this.person.setFirstname(person.firstname);
-			this.person.setLastname(person.lastname);
-			this.person.setDescription(person.description);
+			if (person.firstname != null) { this.person.setFirstname(person.firstname); }
+			if (person.lastname != null) { this.person.setLastname(person.lastname); }
+			if (person.description != null) { this.person.setDescription(person.description); }
 		});
 	}
 

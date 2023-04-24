@@ -13,8 +13,11 @@ export class AuthService {
 
 	constructor(private http: HttpClient) { }
 
-	public register(user: User): Observable<any> {
-		return this.http.post(this.authURL + 'register', user);
+	public register(user: User): Observable<Jwt> {
+		return this.http.post<Jwt>(this.authURL + 'register', {
+			"email": user.email,
+			"password": user.password
+		});
 	}
 
 	public authenticate(user: User): Observable<Jwt> {
