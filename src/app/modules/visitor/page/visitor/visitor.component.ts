@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { PersonService } from '@app/core/http/person/person.service';
-import { Person } from '@models/person.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 @Component({
 	selector: 'app-visitor',
 	templateUrl: './visitor.component.html',
@@ -8,13 +7,12 @@ import { Person } from '@models/person.model';
 })
 export class VisitorComponent implements OnInit {
 
-	defaultPerson: Person = new Person('firstname', 'lastname', 'description');
-	defaultImg: String = 'https://picsum.photos/1920/1080';
+	@Input() isLogged!: boolean;
 
-	persons: Person[] = []
-
-	constructor(private readonly personSvc: PersonService) { }
+	constructor(private readonly router: Router) { }
 
 	ngOnInit(): void {
+		this.isLogged = this.router.url.includes('logged') ? true : false;
 	}
+
 }
