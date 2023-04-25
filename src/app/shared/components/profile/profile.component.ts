@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
 
 	isLogged!: boolean;
 
-	defaultPerson: Person = new Person('firstname', 'lastname', 'description');
+	defaultPerson: Person = new Person('Firstname', 'Lastname', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in molestie est, eget scelerisque velit. Integer tempus nisl quis lectus sagittis, non venenatis mi pharetra. Nullam ultricies ligula vitae tincidunt ultricies. Aenean eu mollis massa, quis ullamcorper ante. Nullam congue, nulla sit amet ultrices maximus, lorem lectus ullamcorper diam, nec finibus turpis odio a nisi. Maecenas egestas mauris id sem blandit porta a in dui. Sed eget eleifend magna. Nullam mattis nulla tincidunt dapibus faucibus. Donec aliquet augue lectus, sit amet mollis nibh pharetra ac. Integer eget bibendum nunc. Vestibulum sed urna non nisi placerat egestas vitae ut urna. Vestibulum. ');
 	defaultImg: String = 'https://picsum.photos/1920/1080';
 
 	// VALUES TO SEND TO THE API

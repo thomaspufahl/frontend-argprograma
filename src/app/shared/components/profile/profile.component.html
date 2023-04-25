@@ -1,8 +1,7 @@
-<section>
+<section class="profile">
 	<img src="{{ img }}" alt="profile bbanner">
-
 	<h1>{{person.firstname}} {{person.lastname}}</h1>
-	<p>{{ person.description }}</p>
+	<p id="description">{{ person.description }}</p>
 </section>
 <section class="editor-box" *ngIf="isLogged">
 	<dialog #dialog>
