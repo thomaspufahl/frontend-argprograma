@@ -1,31 +1,72 @@
+import { Person } from "./person.model";
+import { Responsibility } from "./responsibility.model";
+
 export class Employment {
 
 	id!: number;
-	name!: String;
-	description!: String;
+	position!: string;
+	employeer!: string;
+	start!: string;
+	end!: string;
+	responsibilities!: Responsibility[];
+	person?: Person;
 
-	constructor(name: String, description: String) {
-		this.name = name;
-		this.description = description;
+	constructor(
+		position: string,
+		employeer: string,
+		start: string,
+		end: string,
+		person: Person = new Person(),
+	) {
+		this.position = position;
+		this.employeer = employeer;
+		this.start = start;
+		this.end = end;
+		this.person = person;
 	}
 
 	setId(id: number) {
 		this.id = id;
 	}
-	setName(name: String) {
-		this.name = name;
+	setPosition(position: string) {
+		this.position = position;
 	}
-	setDescription(description: String) {
-		this.description = description;
+	setEmployeer(employeer: string) {
+		this.employeer = employeer;
 	}
+	setStart(start: string) {
+		this.start = start;
+	}
+	setEnd(end: string) {
+		this.end = end;
+	}
+	setResponsibilities(responsibilities: Responsibility[]) {
+		this.responsibilities = [...responsibilities];
+	}
+	setPerson(person: Person) {
+		if (person.id > 0) { this.person = person; }
+	}
+
 
 	getId() {
 		return this.id;
 	}
-	getName() {
-		return this.name;
+	getPosition() {
+		return this.position;
 	}
-	getDescription() {
-		return this.description;
+	getEmployeer() {
+		return this.employeer;
+	}
+	getStart() {
+		return this.start;
+	}
+	getEnd() {
+		return this.end;
+	}
+	getResponsibilities() {
+		return this.responsibilities;
+	}
+	getPerson() {
+		return this.person;
 	}
 }

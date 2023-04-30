@@ -3,13 +3,18 @@ import { ApiService } from '../api.service';
 import { HttpClient } from '@angular/common/http';
 import { Person } from '@models/person.model';
 import { Observable } from 'rxjs';
+import { TokenService, tokenGetter } from '@app/core/services/token/token.service';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class PersonService {
 
-	constructor(private readonly api: ApiService, private readonly http: HttpClient) { }
+	constructor(
+		private readonly api: ApiService,
+		private readonly http: HttpClient,
+		private readonly tokenSvc: TokenService
+	) { }
 
 	URL: string = this.api.getApiUrl() + '/person';
 	modifyURL: string = this.URL + '/person/modify';

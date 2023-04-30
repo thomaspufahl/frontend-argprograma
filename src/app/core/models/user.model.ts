@@ -1,11 +1,11 @@
-import { Person } from "./person.model";
+// import { Person } from "./person.model";
 
 export class User {
 	// OJO AL CAMBIO QUE HICE ACA, si falla algo puede ser por el cambio de ! a ?
 	email!: string;
 	password!: string;
 	authorities?: string[];
-	person?: Person;
+	// person?: Person;
 
 	constructor(email: string, password: string) {
 		this.email = email;
@@ -24,9 +24,9 @@ export class User {
 		this.authorities = authorities;
 	}
 
-	setPerson(person: Person): void {
-		this.person = person;
-	}
+	// setPerson(person: Person): void {
+	// 	this.person = person;
+	// }
 
 	getEmail(): string {
 		return this.email;
@@ -40,7 +40,7 @@ export class User {
 		return this.authorities!;
 	}
 
-	getPerson(): Person {
-		return this.person!;
-	}
+	// getPerson(): Person {
+	// 	return this.person!;
+	// }
 }

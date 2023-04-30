@@ -1,21 +1,78 @@
 <div class="work-experience-box">
 	<h2>Relevant Experience</h2>
-	<div class="employment-container">
-		<div class="edit-section" *ngIf="isLogged">
-			<button>Edit</button>
-			<button>Delete</button>
-		</div>
-		<h3>Job Title<em>, Employer</em></h3>
-		<p>Start date - End date</p>
+	<div class="employment-container" *ngFor="let employment of employments">
+
+		<section class="editor-box" *ngIf="isLogged">
+			<!-- EDIT EMPLOYMENT -->
+			<dialog #dialog>
+				<form method="dialog" #updateEmploymentForm="ngForm"
+					(ngSubmit)="onFakeEmploymentUpdate(updateEmploymentForm)" novalidate>
+					<input type="text" name="position" placeholder="Position" ngModel required>
+					<input type="text" name="employeer" placeholder="Employeer" ngModel required>
+					<input type="date" name="start" placeholder="Start date" ngModel required>
+					<input type="date" name="end" placeholder="End date" ngModel required>
+					<input type="number" name="id" hidden ngModel="{{employment.id}}" required>
+					<button type="submit">Update</button>
+					<button type="reset" (click)="dialog.close()">Cancel</button>
+				</form>
+			</dialog>
+			<button type="button" (click)="dialog.show()">Update this area</button>
+			<button type="button" (click)="deleteThisEmployment(employment.id)">Delete this employment</button>
+		</section>
+
+		<h3>{{employment.position}}<em>, {{employment.employeer}}</em></h3>
+		<p>{{employment.start}} - {{employment.end}}</p>
 		<hr>
 		<ul>
-			<li>
-				<p>- Achievement || Reponsability.</p>
+			<li *ngFor="let responsibility of employment.responsibilities">
+				<!-- EDIT RESPONSIBILITY -->
+				<section class="editor-box" *ngIf="isLogged">
+					<dialog #updateDialog>
+						<form method="dialog" #updateResponsibilityForm="ngForm"
+							(ngSubmit)="onFakeResponsibilityUpdate(updateResponsibilityForm)" novalidate>
+							<textarea name="description" placeholder="Responsibility" ngModel required cols="30"
+								rows="10"></textarea>
+							<input type="number" name="id" hidden ngModel="{{responsibility.id}}" required>
+							<button type="submit">Update</button>
+							<button type="reset" (click)="updateDialog.close()">Cancel</button>
+						</form>
+					</dialog>
+					<button type="button" (click)="updateDialog.show()">Update this responsibility</button>
+					<button type="button" (click)="deleteThisResponsibility(responsibility.id)">Delete this
+						responsibility</button>
+				</section>
+				<p>- {{ responsibility.description }}</p>
 			</li>
-			<li>
-				<p>- Achievement || Responsability.</p>
-			</li>
+			<!-- ADD RESPONSIBILITY -->
+			<section class="editor-box" *ngIf="isLogged">
+				<dialog #addResponsibilityDialog>
+					<form method="dialog" #addResponsibilityForm="ngForm"
+						(ngSubmit)="addResponsibility(addResponsibilityForm)" novalidate>
+						<textarea name="description" placeholder="Responsibility" ngModel required cols="30"
+							rows="10"></textarea>
+						<input type="number" name="id" hidden ngModel="{{employment.id}}" required>
+						<button type="submit">Add</button>
+						<button type="reset" (click)="addResponsibilityDialog.close()">Cancel</button>
+					</form>
+				</dialog>
+				<button *ngIf="isLogged" (click)="addResponsibilityDialog.show()">Add responsibility</button>
+			</section>
 		</ul>
 		<hr id="hr-close">
 	</div>
+	<!-- ADD EMPLOYMENT -->
+	<section class="editor-box" *ngIf="isLogged">
+		<dialog #addEmploymentDialog>
+			<form method="dialog" id="addEmploymentForm" #addEmploymentForm="ngForm"
+				(ngSubmit)="addEmployment(addEmploymentForm)" novalidate>
+				<input type="text" name="position" placeholder="Position" ngModel required>
+				<input type="text" name="employeer" placeholder="Employeer" ngModel required>
+				<input type="date" name="start" placeholder="Start date" ngModel required>
+				<input type="date" name="end" placeholder="End date" ngModel required>
+				<button type="submit">Add</button>
+				<button type="reset" (click)="addEmploymentDialog.close()">Cancel</button>
+			</form>
+		</dialog>
+		<button (click)="addEmploymentDialog.show()">Add employment</button>
+	</section>
 </div>
