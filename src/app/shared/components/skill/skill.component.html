@@ -1,0 +1,41 @@
+<div class="skill-box">
+	<h3>Skills</h3>
+	<div class="skill-container">
+		<div class="skill" *ngFor="let skill of skills">
+			<div class="editor-box" *ngIf="isLogged">
+				<!-- EDIT SKILL -->
+				<dialog #dialog>
+					<form method="dialog" #updateSkillForm="ngForm" (ngSubmit)="onFakeSkillUpdate(updateSkillForm)"
+						novalidate>
+						<input type="text" name="name" placeholder="Skill name" ngModel required>
+						<input type="number" name="percentage" placeholder="Percentage" ngModel required>
+						<input type="number" name="id" hidden ngModel="{{skill.id}}" required>
+						<button type="submit">Update</button>
+						<button type="reset" (click)="dialog.close()">Cancel</button>
+					</form>
+				</dialog>
+				<button type="button" (click)="dialog.show()">Update this area</button>
+				<button type="button" (click)="deleteThisSkill(skill.id)">Delete this skill</button>
+			</div>
+			<div class="skill-name">{{skill.name}}</div>
+			<div class="skill-bar">
+				<div class="skill-percentage" [ngStyle]="{'max-width': skill.percentage + '%'}">
+					<strong>{{skill.percentage}}%</strong>
+				</div>
+			</div>
+		</div>
+		<div class="editor-box" *ngIf="isLogged">
+			<!-- ADD SKILL -->
+			<dialog #dialog>
+				<form method="dialog" #addSkillForm="ngForm" (ngSubmit)="addSkill(addSkillForm)" novalidate>
+					<input type="text" name="name" placeholder="Skill name" ngModel required>
+					<input type="number" name="percentage" placeholder="Percentage" ngModel required>
+					<button type="submit">Add</button>
+					<button type="reset" (click)="dialog.close()">Cancel</button>
+				</form>
+			</dialog>
+			<button type="button" (click)="dialog.show()">Add skill</button>
+		</div>
+
+	</div>
+</div>

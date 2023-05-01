@@ -65,8 +65,6 @@ export class EducationComponent implements OnInit {
 	}
 
 	onFakeEducationUpdate(form: any): void {
-		console.log(form.value)
-
 		if (form.value.degree != '') { this.educations.find((education: Education) => education.id == form.value.id)!.degree = form.value.degree; }
 		if (form.value.school != '') { this.educations.find((education: Education) => education.id == form.value.id)!.school = form.value.school; }
 		if (form.value.start != '') { this.educations.find((education: Education) => education.id == form.value.id)!.start = form.value.start; }

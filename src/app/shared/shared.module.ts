@@ -5,6 +5,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { FormsModule } from '@angular/forms';
 import { EmploymentComponent } from './components/employment/employment.component';
 import { EducationComponent } from './components/education/education/education.component';
+import { SkillComponent } from './components/skill/skill.component';
 
 
 
@@ -14,6 +15,7 @@ import { EducationComponent } from './components/education/education/education.c
 		ProfileComponent,
 		EmploymentComponent,
 		EducationComponent,
+		SkillComponent,
 	],
 	imports: [
 		CommonModule,
@@ -24,6 +26,7 @@ import { EducationComponent } from './components/education/education/education.c
 		ProfileComponent,
 		EmploymentComponent,
 		EducationComponent,
+		SkillComponent,
 	]
 })
 export class SharedModule { }
