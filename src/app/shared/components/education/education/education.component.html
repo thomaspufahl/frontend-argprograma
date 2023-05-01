@@ -1,0 +1,47 @@
+<div class="education-box">
+	<h2>Education</h2>
+	<div class="education-container" *ngFor="let education of educations">
+
+		<section class="editor-box" *ngIf="isLogged">
+			<!-- EDIT EDUCATION -->
+			<dialog #dialog>
+				<form method="dialog" #updateEducationForm="ngForm"
+					(ngSubmit)="onFakeEducationUpdate(updateEducationForm)" novalidate>
+					<input type="text" name="degree" placeholder="Degree" ngModel required>
+					<input type="text" name="school" placeholder="School" ngModel required>
+					<input type="date" name="start" placeholder="Start date" ngModel required>
+					<input type="date" name="end" placeholder="End date" ngModel required>
+					<textarea name="description" cols="30" rows="10" placeholder="Description" ngModel
+						required></textarea>
+					<input type="number" name="id" hidden ngModel="{{education.id}}" required>
+					<button type="submit">Update</button>
+					<button type="reset" (click)="dialog.close()">Cancel</button>
+				</form>
+			</dialog>
+			<button type="button" (click)="dialog.show()">Update this area</button>
+			<button type="button" (click)="deleteThisEducation(education.id)">Delete this education</button>
+		</section>
+
+		<h3>{{education.degree}}<em>, {{education.school}}</em></h3>
+		<p>{{education.start}} - {{education.end}}</p>
+		<hr>
+		<p>{{education.description}}</p>
+		<hr id="hr-close">
+	</div>
+	<!-- ADD EMPLOYMENT -->
+	<section class="editor-box" *ngIf="isLogged">
+		<dialog #addEducationDialog>
+			<form method="dialog" id="addEducationForm" #addEducationForm="ngForm"
+				(ngSubmit)="addEducation(addEducationForm)" novalidate>
+				<input type="text" name="degree" placeholder="Degree" ngModel required>
+				<input type="text" name="school" placeholder="School" ngModel required>
+				<input type="date" name="start" placeholder="Start date" ngModel required>
+				<input type="date" name="end" placeholder="End date" ngModel required>
+				<textarea name="description" cols="30" rows="10" placeholder="Description" ngModel required></textarea>
+				<button type="submit">Add</button>
+				<button type="reset" (click)="addEducationDialog.close()">Cancel</button>
+			</form>
+		</dialog>
+		<button (click)="addEducationDialog.show()">Add education</button>
+	</section>
+</div>

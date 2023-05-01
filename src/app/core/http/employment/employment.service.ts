@@ -13,7 +13,6 @@ export class EmploymentService {
 
 	constructor(
 		private readonly api: ApiService,
-
 		private readonly http: HttpClient,
 	) { }
 
