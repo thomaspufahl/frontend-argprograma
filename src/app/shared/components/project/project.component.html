@@ -1,0 +1,55 @@
+<div class="project-box">
+	<h2>Projects</h2>
+	<div class="project-container">
+		<div class="card" *ngFor="let project of projects">
+			<section class="editor-box" *ngIf="isLogged">
+				<!-- CARD -->
+				<div class="content">
+					<div class="page">
+						<img src="https://source.unsplash.com/XP9JF6jyRGc/400x400" alt="title" />
+						<div class="visit-page">
+							<a id="visit" href="https://source.unsplash.com/XP9JF6jyRGc/400x400" title="Title"
+								target="_blank">Visit page</a>
+						</div>
+					</div>
+					<h3>{{project.title}}</h3>
+					<em>finished at {{project.finish}}</em>
+					<hr>
+					<p>{{project.description}}</p>
+				</div>
+				<!-- EDIT PROJECT -->
+				<dialog #dialog>
+					<form method="dialog" #updateProjectForm="ngForm"
+						(ngSubmit)="onFakeProjectUpdate(updateProjectForm)" novalidate>
+						<input type="text" name="title" placeholder="Title" ngModel required>
+						<input type="url" name="link" placeholder="Link" ngModel required>
+						<input type="date" name="finish" placeholder="Finish date" ngModel required>
+						<textarea name="description" cols="30" rows="10" placeholder="Description" ngModel
+							required></textarea>
+						<input type="number" name="id" hidden ngModel="{{project.id}}" required>
+						<button type="submit">Update</button>
+						<button type="reset" (click)="dialog.close()">Cancel</button>
+					</form>
+				</dialog>
+				<button type="button" (click)="dialog.show()">Update this area</button>
+				<button type="button" (click)="deleteThisProject(project.id)">Delete this project</button>
+			</section>
+		</div>
+		<!-- ADD EMPLOYMENT -->
+		<section class="editor-box" *ngIf="isLogged">
+			<dialog #addProjectDialog>
+				<form method="dialog" id="addProjectForm" #addProjectForm="ngForm"
+					(ngSubmit)="addProject(addProjectForm)" novalidate>
+					<input type="text" name="title" placeholder="Title" ngModel required>
+					<input type="url" name="link" placeholder="Link" ngModel required>
+					<input type="date" name="finish" placeholder="Finish date" ngModel required>
+					<textarea name="description" cols="30" rows="10" placeholder="Description" ngModel
+						required></textarea>
+					<button type="submit">Add</button>
+					<button type="reset" (click)="addProjectDialog.close()">Cancel</button>
+				</form>
+			</dialog>
+			<button (click)="addProjectDialog.show()">Add project</button>
+		</section>
+	</div>
+</div>
