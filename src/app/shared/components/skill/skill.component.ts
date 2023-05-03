@@ -52,12 +52,17 @@ export class SkillComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.skills.push(new Skill(form.value.name, form.value.percentage));
+		let percentage = 0;
+		if (form.value.percentage != '' && form.value.percentage >= 0) {
+			percentage = form.value.percentage
+		}
+
+		this.skills.push(new Skill(form.value.name, percentage));
 		let email = this.tokenSvc.getSubject();
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.skillSvc.create(new Skill(form.value.name, form.value.percentage, new Person('', '', '', personData.id))).subscribe();
+			this.skillSvc.create(new Skill(form.value.name, percentage, new Person('', '', '', personData.id))).subscribe();
 		});
 	}
 
@@ -70,9 +75,14 @@ export class SkillComponent implements OnInit {
 
 	onFakeSkillUpdate(form: any): void {
 		if (form.value.name != '') { this.skills.find((skill: Skill) => skill.id == form.value.id)!.name = form.value.name; }
-		if (form.value.percentage != '') { this.skills.find((skill: Skill) => skill.id == form.value.id)!.percentage = form.value.percentage; }
+		let percentage = -1;
+		if (form.value.percentage != '' && form.value.percentage >= 0) {
+			percentage = form.value.percentage
+			this.skills.find((skill: Skill) => skill.id == form.value.id)!.percentage = form.value.percentage;
+		}
 
-		this.onSkillUpdate(form.value.id, new Skill(form.value.name, form.value.percentage, new Person('', '', '', this.person.id)));
+		console.log(percentage)
+		this.onSkillUpdate(form.value.id, new Skill(form.value.name, percentage, new Person('', '', '', this.person.id)));
 	}
 
 	onSkillUpdate(skill_id: number, skill: Skill): void {
