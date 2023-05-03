@@ -2,21 +2,22 @@
 	<h2>Projects</h2>
 	<div class="project-container">
 		<div class="card" *ngFor="let project of projects">
-			<section class="editor-box" *ngIf="isLogged">
-				<!-- CARD -->
-				<div class="content">
-					<div class="page">
-						<img src="https://source.unsplash.com/XP9JF6jyRGc/400x400" alt="title" />
-						<div class="visit-page">
-							<a id="visit" href="https://source.unsplash.com/XP9JF6jyRGc/400x400" title="Title"
-								target="_blank">Visit page</a>
-						</div>
+			<!-- CARD -->
+			<div class="content">
+				<div class="page">
+					<img src="https://source.unsplash.com/XP9JF6jyRGc/400x400" alt="title" />
+					<div class="visit-page">
+						<a id="visit" href="https://source.unsplash.com/XP9JF6jyRGc/400x400" title="Title"
+							target="_blank">Visit
+							page</a>
 					</div>
-					<h3>{{project.title}}</h3>
-					<em>finished at {{project.finish}}</em>
-					<hr>
-					<p>{{project.description}}</p>
 				</div>
+				<h3>{{project.title}}</h3>
+				<em>finished at {{project.finish}}</em>
+				<hr>
+				<p>{{project.description}}</p>
+			</div>
+			<section class="editor-box" *ngIf="isLogged">
 				<!-- EDIT PROJECT -->
 				<dialog #dialog>
 					<form method="dialog" #updateProjectForm="ngForm"

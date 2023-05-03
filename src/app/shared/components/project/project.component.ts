@@ -33,7 +33,7 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((personData: any) => {
+		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((personData: Person) => {
 			this.person.setId(personData.id);
 			if (personData.firstname != null) { this.person.setFirstname(personData.firstname); }
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
