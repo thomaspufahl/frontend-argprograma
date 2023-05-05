@@ -55,7 +55,7 @@ export class EducationComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.educationSvc.create(new Education(form.value.degree, form.value.school, form.value.start, form.value.end, form.value.description, new Person('', '', '', personData.id))).subscribe();
+			this.educationSvc.create(new Education(form.value.degree, form.value.school, form.value.start, form.value.end, form.value.description, new Person('', '', '', '', '', personData.id))).subscribe();
 		});
 
 	}

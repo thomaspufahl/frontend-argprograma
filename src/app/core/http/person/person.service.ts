@@ -17,7 +17,7 @@ export class PersonService {
 	) { }
 
 	URL: string = this.api.getApiUrl() + '/person';
-	modifyURL: string = this.URL + '/person/modify';
+	modifyURL: string = this.URL + '/modify'; // OJO AL CAMBIO Q HICE ACA, antes era /person/modify
 	userURL: string = this.URL + '/user';
 
 	public getList(): Observable<Person[]> {
@@ -50,5 +50,12 @@ export class PersonService {
 
 	public editPersonByUserEmail(email: string, person: Person): Observable<Person> {
 		return this.http.patch<Person>(this.userURL + `/${email}`, person)
+	}
+
+	public uploadBanner(person_id: number, multipart: FormData): Observable<String> {
+		return this.http.post<String>(this.modifyURL + `/upload/banner/${person_id}`, multipart)
+	}
+	public uploadAvatar(person_id: number, multipart: FormData): Observable<String> {
+		return this.http.post<String>(this.modifyURL + `/upload/avatar/${person_id}`, multipart)
 	}
 }

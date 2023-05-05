@@ -1,6 +1,31 @@
 <section class="profile">
-	<img id="banner" src="{{ img }}" alt="profile bbanner">
-	<img id="avatar" src="{{ img }}" alt="profile picture">
+	<!-- BANNER -->
+	<section class="editor-box banner" *ngIf="isLogged">
+		<dialog #dialogBanner>
+			<form method="dialog" enctype="multipart/form-data" (submit)="onImageUpdate(banner)">
+				<input type="file" name="banner" placeholder="Banner" #banner>
+				<button type="submit">Update</button>
+				<button type="reset" (click)="dialogBanner.close()">Cancel</button>
+			</form>
+		</dialog>
+		<button type="button" id="btn-banner" (click)="dialogBanner.show()">Update this area</button>
+	</section>
+	<img id="banner" src="{{ person.banner }}" alt="banner">
+
+	<!-- AVATAR -->
+	<section class="editor-box avatar" *ngIf="isLogged">
+		<dialog #dialogAvatar>
+			<form method="dialog" enctype="multipart/form-data" (submit)="onImageUpdate(avatar)">
+				<input type="file" name="avatar" placeholder="Avatar" #avatar>
+				<button type="submit">Update</button>
+				<button type="reset" (click)="dialogAvatar.close()">Cancel</button>
+			</form>
+		</dialog>
+		<button type="button" id="btn-avatar" (click)="dialogAvatar.show()">Update this area</button>
+	</section>
+	<img id="avatar" src="{{ person.avatar }}" alt="avatar">
+
+
 	<h1>{{person.firstname}} {{person.lastname}}</h1>
 	<p id="description">{{ person.description }}</p>
 </section>

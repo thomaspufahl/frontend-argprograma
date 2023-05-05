@@ -62,7 +62,7 @@ export class SkillComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.skillSvc.create(new Skill(form.value.name, percentage, new Person('', '', '', personData.id))).subscribe();
+			this.skillSvc.create(new Skill(form.value.name, percentage, new Person('', '', '', '', '', personData.id))).subscribe();
 		});
 	}
 
@@ -82,7 +82,7 @@ export class SkillComponent implements OnInit {
 		}
 
 		console.log(percentage)
-		this.onSkillUpdate(form.value.id, new Skill(form.value.name, percentage, new Person('', '', '', this.person.id)));
+		this.onSkillUpdate(form.value.id, new Skill(form.value.name, percentage, new Person('', '', '', '', '', this.person.id)));
 	}
 
 	onSkillUpdate(skill_id: number, skill: Skill): void {

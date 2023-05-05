@@ -3,12 +3,16 @@ export class Person {
 	id!: number;
 	firstname!: String;
 	lastname!: String;
+	avatar!: String;
+	banner!: String;
 	description!: String;
 
-	constructor(firstname: String = '', lastname: String = '', description: String = '', id: number = 0) {
+	constructor(firstname: String = '', lastname: String = '', description: String = '', avatar: String = '', banner: String = '', id: number = 0) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.description = description;
+		this.avatar = avatar;
+		this.banner = banner;
 		this.id = id;
 	}
 
@@ -24,6 +28,12 @@ export class Person {
 	setDescription(description: String) {
 		this.description = description;
 	}
+	setAvatar(avatar: String) {
+		this.avatar = avatar;
+	}
+	setBanner(banner: String) {
+		this.banner = banner;
+	}
 
 
 	getId() {
@@ -38,4 +48,11 @@ export class Person {
 	getDescription() {
 		return this.description;
 	}
+	getAvatar() {
+		return this.avatar;
+	}
+	getBanner() {
+		return this.banner;
+	}
+
 }

@@ -55,7 +55,7 @@ export class ProjectComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', personData.id))).subscribe();
+			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe();
 		});
 	}
 
