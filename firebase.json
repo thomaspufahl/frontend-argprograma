@@ -1,0 +1,20 @@
+{
+	"hosting": {
+		"public": "dist/portfolio-thomaspufahl",
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			},
+			{
+				"source": "/logged",
+				"destination": "/index.html"
+			}
+		],
+		"ignore": [
+			"firebase.json",
+			"**/.*",
+			"**/node_modules/**"
+		]
+	}
+}
