@@ -8,6 +8,6 @@ export class ApiService {
 	constructor() { }
 
 	public getApiUrl(): string {
-		return 'http://localhost:8080';
+		return 'https://api-argprograma-428s.onrender.com';
 	}
 }
