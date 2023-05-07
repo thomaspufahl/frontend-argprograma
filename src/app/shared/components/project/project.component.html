@@ -5,10 +5,9 @@
 			<!-- CARD -->
 			<div class="content">
 				<div class="page">
-					<img src="https://source.unsplash.com/XP9JF6jyRGc/400x400" alt="title" />
+					<img src="{{ project.img || defaultImg }}" alt="title" />
 					<div class="visit-page">
-						<a id="visit" href="https://source.unsplash.com/XP9JF6jyRGc/400x400" title="Title"
-							target="_blank">Visit
+						<a id="visit" href="{{ project.link }}" title="Title" target="_blank">Visit
 							page</a>
 					</div>
 				</div>
@@ -21,7 +20,7 @@
 				<!-- EDIT PROJECT -->
 				<dialog #dialog>
 					<form method="dialog" #updateProjectForm="ngForm"
-						(ngSubmit)="onFakeProjectUpdate(updateProjectForm)" novalidate>
+						(ngSubmit)="onFakeProjectUpdate(updateProjectForm, image)" novalidate>
 						<input type="text" name="title" placeholder="Title" ngModel required>
 						<input type="url" name="link" placeholder="Link" ngModel required>
 						<input type="date" name="finish" placeholder="Finish date" ngModel required>
@@ -34,9 +33,19 @@
 				</dialog>
 				<button type="button" (click)="dialog.show()">Update this area</button>
 				<button type="button" (click)="deleteThisProject(project.id)">Delete this project</button>
+				<dialog #dialogImage>
+					<form method="dialog" #updateImageForm="ngForm" (ngSubmit)="onImageUpdate(updateImageForm, image)"
+						novalidate>
+						<input type="file" name="image" placeholder="Image" #image>
+						<input type="number" name="id" hidden ngModel="{{project.id}}" required>
+						<button type="submit">Update</button>
+						<button type="reset" (click)="dialogImage.close()">Cancel</button>
+					</form>
+				</dialog>
+				<button type="button" (click)="dialogImage.show()">Update image</button>
 			</section>
 		</div>
-		<!-- ADD EMPLOYMENT -->
+		<!-- ADD PROJECT -->
 		<section class="editor-box" *ngIf="isLogged">
 			<dialog #addProjectDialog>
 				<form method="dialog" id="addProjectForm" #addProjectForm="ngForm"

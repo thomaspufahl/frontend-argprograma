@@ -34,4 +34,9 @@ export class ProjectService {
 	public deleteById(project_id: number) {
 		return this.http.delete(this.modifyURL + `/remove/${project_id}`);
 	}
+
+	public uploadImage(project_id: number, multipart: FormData): Observable<String> {
+		return this.http.post<String>(this.modifyURL + `/upload/${project_id}`, multipart);
+	}
+
 }

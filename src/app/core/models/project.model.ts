@@ -6,6 +6,7 @@ export class Project {
 	description!: string;
 	link!: string;
 	finish!: string;
+	img!: String;
 	person?: Person;
 
 	constructor(
@@ -37,6 +38,9 @@ export class Project {
 	setFinish(finish: string) {
 		this.finish = finish;
 	}
+	setImg(img: string) {
+		this.img = img;
+	}
 	setPerson(person: Person) {
 		if (person.id > 0) { this.person = person; }
 	}
@@ -55,6 +59,9 @@ export class Project {
 	}
 	getFinish() {
 		return this.finish;
+	}
+	getImg() {
+		return this.img;
 	}
 	getPerson() {
 		return this.person;

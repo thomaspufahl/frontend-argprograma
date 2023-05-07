@@ -7,7 +7,14 @@ export class Person {
 	banner!: String;
 	description!: String;
 
-	constructor(firstname: String = '', lastname: String = '', description: String = '', avatar: String = '', banner: String = '', id: number = 0) {
+	constructor(
+		firstname: String = '',
+		lastname: String = '',
+		description: String = '',
+		avatar: String = '',
+		banner: String = '',
+		id: number = 0
+	) {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.description = description;

@@ -14,6 +14,7 @@ export class ProjectComponent implements OnInit {
 
 	@Input() isLogged!: boolean;
 
+	defaultImg: string = "https://source.unsplash.com/XP9JF6jyRGc/400x400";
 	defaultProject: Project = new Project("Title Project", "Project description", "Link", "YYYY-MM-DD");
 	defaultPerson: Person = new Person();
 
@@ -40,7 +41,6 @@ export class ProjectComponent implements OnInit {
 			if (personData.description != null) { this.person.setDescription(personData.description); }
 
 			this.projectSvc.getListByPerson(this.person).subscribe((projects: Project[]) => {
-				console.log(projects);
 				this.projects = projects;
 			});
 		});
@@ -66,7 +66,7 @@ export class ProjectComponent implements OnInit {
 		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe() : null;
 	}
 
-	onFakeProjectUpdate(form: any): void {
+	onFakeProjectUpdate(form: any, image: HTMLInputElement): void {
 		if (form.value.title != '') { this.projects.find((project: Project) => project.id == form.value.id)!.title = form.value.title; }
 		if (form.value.description != '') { this.projects.find((project: Project) => project.id == form.value.id)!.description = form.value.description; }
 		if (form.value.link != '') { this.projects.find((project: Project) => project.id == form.value.id)!.link = form.value.link; }
@@ -80,5 +80,21 @@ export class ProjectComponent implements OnInit {
 		if (this.tokenSvc.isExpired()) { return }
 
 		this.projectSvc.update(project_id, project).subscribe();
+	}
+
+	onImageUpdate(form: any, image: HTMLInputElement) {
+
+		if (!this.tokenSvc.existsToken()) { return }
+		if (this.tokenSvc.isExpired()) { return }
+
+		const file: File = image.files![0];
+
+		if (file == null) { return }
+		if (file.size > 10000000) { return }
+		let filename = file.name;
+		const formData = new FormData();
+
+		formData.append('image', file);
+		this.projectSvc.uploadImage(form.value.id, formData).subscribe();
 	}
 }
