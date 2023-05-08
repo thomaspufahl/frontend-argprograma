@@ -8,11 +8,12 @@
 				<button type="reset" (click)="dialogBanner.close()">Cancel</button>
 			</form>
 		</dialog>
-		<button type="button" id="btn-banner" (click)="dialogBanner.show()">Update this area</button>
+		<button type="button" id="btn-banner" (click)="dialogBanner.show()">Update banner image</button>
 	</section>
 	<img id="banner" src="{{ person.banner }}" alt="banner">
 
 	<!-- AVATAR -->
+	<img id="avatar" src="{{ person.avatar }}" alt="avatar">
 	<section class="editor-box avatar" *ngIf="isLogged">
 		<dialog #dialogAvatar>
 			<form method="dialog" enctype="multipart/form-data" (submit)="onImageUpdate(avatar)">
@@ -21,10 +22,8 @@
 				<button type="reset" (click)="dialogAvatar.close()">Cancel</button>
 			</form>
 		</dialog>
-		<button type="button" id="btn-avatar" (click)="dialogAvatar.show()">Update this area</button>
+		<button type="button" id="btn-avatar" (click)="dialogAvatar.show()">Update avatar image</button>
 	</section>
-	<img id="avatar" src="{{ person.avatar }}" alt="avatar">
-
 
 	<h1>{{person.firstname}} {{person.lastname}}</h1>
 	<p id="description">{{ person.description }}</p>
@@ -34,7 +33,7 @@
 		<form method="dialog" #updateForm="ngForm" (ngSubmit)="onFakeUpdate(updateForm)" novalidate>
 			<input type="text" name="firstname" placeholder="Firstname" ngModel required>
 			<input type="text" name="lastname" placeholder="Lastname" ngModel required>
-			<input type="text-area" name="description" placeholder="Description" ngModel required>
+			<textarea name="description" cols="30" rows="10" placeholder="Description" ngModel required></textarea>
 			<button type="submit">Update</button>
 			<button type="reset" (click)="dialog.close()">Cancel</button>
 		</form>

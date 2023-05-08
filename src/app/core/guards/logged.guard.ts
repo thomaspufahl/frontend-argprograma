@@ -27,6 +27,7 @@ export class LoggedGuard implements CanActivate {
 			alert("You don't have permission to access this page! Please log in.");
 			this.router.navigate(['/login']);
 		}
+
 		return exitCondition;
 	}
 

@@ -14,7 +14,7 @@ export class SkillComponent implements OnInit {
 
 	@Input() isLogged!: boolean;
 
-	defaultSkill: Skill = new Skill("Name Skill", 20);
+	defaultSkill: Skill = new Skill("Skill", 20);
 	defaultPerson: Person = new Person();
 
 	// VALUES TO SEND TO THE API

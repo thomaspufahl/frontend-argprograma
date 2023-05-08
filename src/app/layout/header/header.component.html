@@ -2,8 +2,14 @@
 	<nav>
 		<app-logo></app-logo>
 		<ul>
-			<li class="item"><button type="button" (click)="goToLogIn()" *ngIf="!isLoggedIn">Log in</button></li>
-			<li class="item"><button type="button" (click)="onLogOut()" *ngIf="isLoggedIn">Log out</button></li>
+			<li class="item"><button type="button" class="home-button" routerLink="/visitor" *ngIf="isLoggedIn">Visitor
+					View</button></li>
+			<li class="item"><button type="button" class="home-button" routerLink="/logged" *ngIf="isLoggedIn">Editor
+					View</button></li>
+			<li class="item"><button type="button" class="login-button" (click)="goToLogIn()" *ngIf="!isLoggedIn">Log
+					in</button></li>
+			<li class="item"><button type="button" class="logout-button" (click)="onLogOut()" *ngIf="isLoggedIn">Log
+					out</button></li>
 		</ul>
 	</nav>
 	<div class="border-orange-strong"></div>

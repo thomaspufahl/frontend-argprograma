@@ -29,6 +29,109 @@ a
 	text-decoration: none
 	color: v.$white
 
+hr
+	border: 0
+	height: 1px
+	background: v.$orange-gradient
+	opacity: .5
+	margin: 0
+	padding: 0
+	border: 0
+	vertical-align: baseline
+
+form
+	display: flex
+	flex-direction: column
+	justify-content: center
+	align-items: center
+
+label
+	display: block
+	margin: .5rem
+	margin-bottom: 0
+
+input
+	border-style: none
+	border-radius: 0
+	padding: 10px 20px
+	margin: .5rem
+	font-family: v.$font
+	font-size: 16px
+	background: v.$dark
+	color: v.$white
+	border-left: 1px solid v.$orange
+	&:focus
+		outline: none
+		border-bottom: 1px solid v.$orange
+
+button
+	margin: .5rem
+	padding: 10px 20px
+	border-radius: 0
+	color: v.$dark
+	font-family: v.$font
+	border-style: none
+	cursor: pointer
+	font-weight: bold
+	text-transform: uppercase
+
+.editor-box
+	display: flex
+	justify-content: left
+	align-items: center
+	.edit-button
+		margin: .5rem
+		padding: 10px 20px
+		border-radius: 0
+		color: v.$dark
+		font-family: v.$font
+		border-style: none
+		cursor: pointer
+		font-weight: bold
+		text-transform: uppercase
+		&:hover
+			background: v.$orange
+			color: v.$dark
+			transition: all 0.3s ease
+
+textarea
+	width: 90%
+	height: 100%
+	border-style: none
+	border-radius: 0
+	padding: 10px 20px
+	margin: .5rem
+	font-family: v.$font
+	font-size: 16px
+	background: v.$dark
+	color: v.$white
+	border-left: 1px solid v.$orange
+	&:focus
+		outline: none
+		border-bottom: 1px solid v.$orange
+
+
+dialog
+	position: absolute
+	align-self: center
+	background: v.$dark
+	color: v.$white
+	border-radius: 0
+	border: 1px solid v.$orange
+	&:focus
+		outline: none
+	input
+		width: 90%
+	button
+		width: 90%
+		background: v.$dark
+		color: v.$white
+		border: 1px solid v.$orange
+		&:hover
+			background: v.$orange
+			color: v.$dark
+			transition: all 0.3s ease
+
 // PRESETS
 .border-orange-weak
 	height: 1px
@@ -44,11 +147,101 @@ a
 	padding: 0
 	border: 0
 	vertical-align: baseline
-.item
-	a
-		&:hover
-			color: v.$orange
-	&:hover
-		transform: scale(1.1)
-		transition: all .3s ease-in-out
-		
+
+.logout-button
+	min-width: 130px 
+	height: 40px 
+	color: v.$dark
+	padding: 5px 10px 
+	font-weight: bold 
+	cursor: pointer 
+	transition: all 0.3s ease 
+	position: relative 
+	display: inline-block 
+	outline: none 
+	border-radius: 0 
+	z-index: 0 
+	background: v.$dark
+	overflow: hidden 
+	border: 1px solid v.$blue 
+	color: v.$blue
+	&:hover 
+		color: v.$dark
+		&:after 
+			width: 100% 
+	&:after 
+		content: "" 
+		position: absolute 
+		z-index: -1 
+		transition: all 0.3s ease 
+		left: 0 
+		top: 0 
+		width: 0 
+		height: 100% 
+		background: v.$blue
+
+.login-button
+	min-width: 130px 
+	height: 40px 
+	color: v.$dark
+	padding: 5px 10px 
+	font-weight: bold 
+	cursor: pointer 
+	transition: all 0.3s ease 
+	position: relative 
+	display: inline-block 
+	outline: none 
+	border-radius: 0 
+	z-index: 0 
+	background: v.$dark
+	overflow: hidden 
+	border: 1px solid v.$orange 
+	color: v.$orange
+	&:hover 
+		color: v.$dark
+		&:after 
+			width: 100% 
+	&:after 
+		content: "" 
+		position: absolute 
+		z-index: -1 
+		transition: all 0.3s ease 
+		left: 0 
+		top: 0 
+		width: 0 
+		height: 100% 
+		background: v.$orange
+
+.add-button
+	min-width: 130px 
+	height: 40px 
+	color: v.$dark
+	padding: 5px 10px 
+	font-weight: bold 
+	cursor: pointer 
+	transition: all 0.3s ease 
+	position: relative 
+	display: inline-block 
+	outline: none 
+	border-radius: 0 
+	z-index: 0 
+	background: v.$dark
+	overflow: hidden 
+	border: 1px solid v.$white
+	color: v.$white
+	&:hover 
+		color: v.$dark
+		&:after 
+			width: 100% 
+	&:after 
+		content: "" 
+		position: absolute 
+		z-index: -1 
+		transition: all 0.3s ease 
+		left: 0 
+		top: 0 
+		width: 0 
+		height: 100% 
+		background: v.$white
+
+

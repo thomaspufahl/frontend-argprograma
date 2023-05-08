@@ -18,8 +18,9 @@
 					<button type="reset" (click)="dialog.close()">Cancel</button>
 				</form>
 			</dialog>
-			<button type="button" (click)="dialog.show()">Update this area</button>
-			<button type="button" (click)="deleteThisEducation(education.id)">Delete this education</button>
+			<button type="button" class="edit-button" (click)="dialog.show()">Update this area</button>
+			<button type="button" class="edit-button" (click)="deleteThisEducation(education.id)">Delete this
+				education</button>
 		</section>
 
 		<h3>{{education.degree}}<em>, {{education.school}}</em></h3>
@@ -28,7 +29,7 @@
 		<p>{{education.description}}</p>
 		<hr id="hr-close">
 	</div>
-	<!-- ADD EMPLOYMENT -->
+	<!-- ADD EDUCATION -->
 	<section class="editor-box" *ngIf="isLogged">
 		<dialog #addEducationDialog>
 			<form method="dialog" id="addEducationForm" #addEducationForm="ngForm"
@@ -42,6 +43,6 @@
 				<button type="reset" (click)="addEducationDialog.close()">Cancel</button>
 			</form>
 		</dialog>
-		<button (click)="addEducationDialog.show()">Add education</button>
+		<button class="add-button" (click)="addEducationDialog.show()">Add education</button>
 	</section>
 </div>

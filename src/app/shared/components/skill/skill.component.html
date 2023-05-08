@@ -2,6 +2,12 @@
 	<h3>Skills</h3>
 	<div class="skill-container">
 		<div class="skill" *ngFor="let skill of skills">
+			<div class="skill-name">{{skill.name}}</div>
+			<div class="skill-bar">
+				<div class="skill-percentage" [ngStyle]="{'max-width': skill.percentage + '%'}">
+					<strong>{{skill.percentage}}%</strong>
+				</div>
+			</div>
 			<div class="editor-box" *ngIf="isLogged">
 				<!-- EDIT SKILL -->
 				<dialog #dialog>
@@ -14,14 +20,8 @@
 						<button type="reset" (click)="dialog.close()">Cancel</button>
 					</form>
 				</dialog>
-				<button type="button" (click)="dialog.show()">Update this area</button>
+				<button type="button" (click)="dialog.show()">Update this</button>
 				<button type="button" (click)="deleteThisSkill(skill.id)">Delete this skill</button>
-			</div>
-			<div class="skill-name">{{skill.name}}</div>
-			<div class="skill-bar">
-				<div class="skill-percentage" [ngStyle]="{'max-width': skill.percentage + '%'}">
-					<strong>{{skill.percentage}}%</strong>
-				</div>
 			</div>
 		</div>
 		<div class="editor-box" *ngIf="isLogged">
@@ -34,8 +34,7 @@
 					<button type="reset" (click)="dialog.close()">Cancel</button>
 				</form>
 			</dialog>
-			<button type="button" (click)="dialog.show()">Add skill</button>
+			<button class="add-button" type="button" (click)="dialog.show()">Add skill</button>
 		</div>
-
 	</div>
 </div>

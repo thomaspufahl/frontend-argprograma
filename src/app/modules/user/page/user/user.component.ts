@@ -15,4 +15,7 @@ export class UserComponent implements OnInit {
 		this.isLogged = this.router.url.includes('logged') ? true : false;
 	}
 
+	refresh(): void {
+		window.location.reload();
+	}
 }

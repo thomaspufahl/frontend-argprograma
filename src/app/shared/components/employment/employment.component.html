@@ -16,8 +16,9 @@
 					<button type="reset" (click)="dialog.close()">Cancel</button>
 				</form>
 			</dialog>
-			<button type="button" (click)="dialog.show()">Update this area</button>
-			<button type="button" (click)="deleteThisEmployment(employment.id)">Delete this employment</button>
+			<button type="button" class="edit-button" (click)="dialog.show()">Update this area</button>
+			<button type="button" class="edit-button" (click)="deleteThisEmployment(employment.id)">Delete this
+				employment</button>
 		</section>
 
 		<h3>{{employment.position}}<em>, {{employment.employeer}}</em></h3>
@@ -37,8 +38,10 @@
 							<button type="reset" (click)="updateDialog.close()">Cancel</button>
 						</form>
 					</dialog>
-					<button type="button" (click)="updateDialog.show()">Update this responsibility</button>
-					<button type="button" (click)="deleteThisResponsibility(responsibility.id)">Delete this
+					<button type="button" class="edit-button" (click)="updateDialog.show()">Update this
+						responsibility</button>
+					<button type="button" class="edit-button"
+						(click)="deleteThisResponsibility(responsibility.id)">Delete this
 						responsibility</button>
 				</section>
 				<p>- {{ responsibility.description }}</p>
@@ -55,7 +58,8 @@
 						<button type="reset" (click)="addResponsibilityDialog.close()">Cancel</button>
 					</form>
 				</dialog>
-				<button *ngIf="isLogged" (click)="addResponsibilityDialog.show()">Add responsibility</button>
+				<button *ngIf="isLogged" class="add-button" (click)="addResponsibilityDialog.show()">Add
+					responsibility</button>
 			</section>
 		</ul>
 		<hr id="hr-close">
@@ -73,6 +77,6 @@
 				<button type="reset" (click)="addEmploymentDialog.close()">Cancel</button>
 			</form>
 		</dialog>
-		<button (click)="addEmploymentDialog.show()">Add employment</button>
+		<button class="add-button" (click)="addEmploymentDialog.show()">Add employment</button>
 	</section>
 </div>
