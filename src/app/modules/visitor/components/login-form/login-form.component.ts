@@ -27,7 +27,7 @@ export class LoginFormComponent implements OnInit {
 		this.authSvc.authenticate(this.user).subscribe(
 			userData => {
 				this.tokenSvc.setToken(userData.token);
-				this.router.navigate(['/logged']);
+				window.location.href = '/logged';
 			},
 			err => {
 				console.log(err);

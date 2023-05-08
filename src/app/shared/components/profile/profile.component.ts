@@ -72,7 +72,6 @@ export class ProfileComponent implements OnInit {
 		if (file == null) { return }
 		if (file.size > 1000000) { return }
 
-		let filename = file.name;
 		const formData = new FormData();
 
 		if (image.name == 'avatar') {
@@ -82,7 +81,6 @@ export class ProfileComponent implements OnInit {
 			formData.append('banner', file);
 			this.personSvc.uploadBanner(this.person.id, formData).subscribe();
 		}
-
 	}
 
 }
