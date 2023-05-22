@@ -55,11 +55,8 @@ export class ProjectComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe(
-				() => {
-					this.ngOnInit();
-				}
-			);
+			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe();
+			this.ngOnInit();
 		});
 	}
 
@@ -67,11 +64,8 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe(
-			() => {
-				this.ngOnInit();
-			}
-		) : null;
+		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe() : null;
+		this.ngOnInit();
 	}
 
 	onFakeProjectUpdate(form: any, image: HTMLInputElement): void {
