@@ -33,7 +33,10 @@ export class ProfileComponent implements OnInit {
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
 			if (personData.description != null) { this.person.setDescription(personData.description); }
 			if (personData.banner != null) { this.person.setBanner(personData.banner); }
+			else { this.person.setBanner("https://picsum.photos/1920/1080") }
 			if (personData.avatar != null) { this.person.setAvatar(personData.avatar); }
+			else { this.person.setAvatar("https://picsum.photos/1920/1080") }
+
 		});
 	}
 
