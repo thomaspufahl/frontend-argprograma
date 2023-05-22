@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { withHashLocation } from '@angular/router';
 import { TokenService } from '@app/core/services/token/token.service';
 import { PersonService } from '@core/http/person/person.service';
 import { Person } from '@models/person.model'
@@ -60,7 +61,11 @@ export class ProfileComponent implements OnInit {
 		if (this.tokenSvc.isExpired()) { return }
 
 		const email = this.tokenSvc.getSubject();
-		this.personSvc.editPersonByUserEmail(email, this.person).subscribe();
+		this.personSvc.editPersonByUserEmail(email, this.person).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 	onImageUpdate(image: HTMLInputElement) {
@@ -70,16 +75,28 @@ export class ProfileComponent implements OnInit {
 		const file: File = image.files![0];
 
 		if (file == null) { return }
-		if (file.size > 1000000) { return }
+		console.log(file.size)
+		if (file.size > 10000000) {
+			alert("Ingresa una imagen de menor tamaño")
+			return
+		}
 
 		const formData = new FormData();
 
 		if (image.name == 'avatar') {
 			formData.append('avatar', file);
-			this.personSvc.uploadAvatar(this.person.id, formData).subscribe();
+			this.personSvc.uploadAvatar(this.person.id, formData).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		} else {
 			formData.append('banner', file);
-			this.personSvc.uploadBanner(this.person.id, formData).subscribe();
+			this.personSvc.uploadBanner(this.person.id, formData).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		}
 	}
 

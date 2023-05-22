@@ -55,13 +55,20 @@ export class EducationComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.educationSvc.create(new Education(form.value.degree, form.value.school, form.value.start, form.value.end, form.value.description, new Person('', '', '', '', '', personData.id))).subscribe();
+			this.educationSvc.create(new Education(form.value.degree, form.value.school, form.value.start, form.value.end, form.value.description, new Person('', '', '', '', '', personData.id))).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		});
-
 	}
 
 	deleteThisEducation(education_id: number) {
-		confirm("Are you sure you want to delete this education?") ? this.educationSvc.deleteById(education_id).subscribe() : console.log("cancel");
+		confirm("Are you sure you want to delete this education?") ? this.educationSvc.deleteById(education_id).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		) : console.log("cancel");
 	}
 
 	onFakeEducationUpdate(form: any): void {
@@ -78,7 +85,11 @@ export class EducationComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.educationSvc.update(education_id, education).subscribe();
+		this.educationSvc.update(education_id, education).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 

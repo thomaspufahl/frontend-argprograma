@@ -55,7 +55,11 @@ export class ProjectComponent implements OnInit {
 		if (email == null) { return }
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
-			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe();
+			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		});
 	}
 
@@ -63,7 +67,11 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe() : null;
+		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		) : null;
 	}
 
 	onFakeProjectUpdate(form: any, image: HTMLInputElement): void {
@@ -79,7 +87,11 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.projectSvc.update(project_id, project).subscribe();
+		this.projectSvc.update(project_id, project).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 	onImageUpdate(form: any, image: HTMLInputElement) {
@@ -90,11 +102,18 @@ export class ProjectComponent implements OnInit {
 		const file: File = image.files![0];
 
 		if (file == null) { return }
-		if (file.size > 10000000) { return }
-		let filename = file.name;
+		if (file.size > 10000000) {
+			alert("Ingresa una imagen de menor tamaño")
+			return
+		}
+
 		const formData = new FormData();
 
 		formData.append('image', file);
-		this.projectSvc.uploadImage(form.value.id, formData).subscribe();
+		this.projectSvc.uploadImage(form.value.id, formData).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 }
