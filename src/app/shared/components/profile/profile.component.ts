@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { withHashLocation } from '@angular/router';
 import { TokenService } from '@app/core/services/token/token.service';
 import { PersonService } from '@core/http/person/person.service';
 import { Person } from '@models/person.model'
@@ -26,13 +27,27 @@ export class ProfileComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((personData: Person) => {
+		let email = this.tokenSvc.getSubject()
+		this.personSvc.getOneByUserEmail(email).subscribe((personData: Person) => {
 			this.person.setId(personData.id);
 			if (personData.firstname != null) { this.person.setFirstname(personData.firstname); }
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
 			if (personData.description != null) { this.person.setDescription(personData.description); }
 			if (personData.banner != null) { this.person.setBanner(personData.banner); }
+			else if (email == 'user@user.com') { this.person.setBanner("./assets/images/banner.jpg") }
 			if (personData.avatar != null) { this.person.setAvatar(personData.avatar); }
+			else if (email == 'user@user.com') { this.person.setAvatar("./assets/images/user.png") }
+
+			if (email == 'user@user.com') {
+				if (window.sessionStorage.getItem('A') == 'true') {
+					window.sessionStorage.setItem('A', 'false');
+					this.person.setAvatar("./assets/images/user.png");
+				}
+				if (window.sessionStorage.getItem('B') == 'true') {
+					window.sessionStorage.setItem('B', 'false');
+					this.person.setAvatar("./assets/images/banner.jpg");
+				}
+			}
 		});
 	}
 
@@ -60,7 +75,11 @@ export class ProfileComponent implements OnInit {
 		if (this.tokenSvc.isExpired()) { return }
 
 		const email = this.tokenSvc.getSubject();
-		this.personSvc.editPersonByUserEmail(email, this.person).subscribe();
+		this.personSvc.editPersonByUserEmail(email, this.person).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 	onImageUpdate(image: HTMLInputElement) {
@@ -70,16 +89,28 @@ export class ProfileComponent implements OnInit {
 		const file: File = image.files![0];
 
 		if (file == null) { return }
-		if (file.size > 1000000) { return }
+		console.log(file.size)
+		if (file.size > 10000000) {
+			alert("Ingresa una imagen de menor tamaño")
+			return
+		}
 
 		const formData = new FormData();
 
 		if (image.name == 'avatar') {
 			formData.append('avatar', file);
-			this.personSvc.uploadAvatar(this.person.id, formData).subscribe();
+			this.personSvc.uploadAvatar(this.person.id, formData).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		} else {
 			formData.append('banner', file);
-			this.personSvc.uploadBanner(this.person.id, formData).subscribe();
+			this.personSvc.uploadBanner(this.person.id, formData).subscribe(
+				() => {
+					this.ngOnInit();
+				}
+			);
 		}
 	}
 

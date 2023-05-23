@@ -63,6 +63,7 @@ export class SkillComponent implements OnInit {
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
 			this.skillSvc.create(new Skill(form.value.name, percentage, new Person('', '', '', '', '', personData.id))).subscribe();
+			this.ngOnInit();
 		});
 	}
 
@@ -71,6 +72,7 @@ export class SkillComponent implements OnInit {
 		if (this.tokenSvc.isExpired()) { return }
 
 		confirm("Are you sure to delete this skill?") ? this.skillSvc.deleteById(skill_id).subscribe() : null;
+		this.ngOnInit();
 	}
 
 	onFakeSkillUpdate(form: any): void {
@@ -81,7 +83,6 @@ export class SkillComponent implements OnInit {
 			this.skills.find((skill: Skill) => skill.id == form.value.id)!.percentage = form.value.percentage;
 		}
 
-		console.log(percentage)
 		this.onSkillUpdate(form.value.id, new Skill(form.value.name, percentage, new Person('', '', '', '', '', this.person.id)));
 	}
 
@@ -89,7 +90,11 @@ export class SkillComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.skillSvc.update(skill_id, skill).subscribe();
+		this.skillSvc.update(skill_id, skill).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 }

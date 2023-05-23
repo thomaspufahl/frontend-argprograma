@@ -34,7 +34,8 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((personData: Person) => {
+		let email = this.tokenSvc.getSubject()
+		this.personSvc.getOneByUserEmail(email).subscribe((personData: Person) => {
 			this.person.setId(personData.id);
 			if (personData.firstname != null) { this.person.setFirstname(personData.firstname); }
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
@@ -42,6 +43,16 @@ export class ProjectComponent implements OnInit {
 
 			this.projectSvc.getListByPerson(this.person).subscribe((projects: Project[]) => {
 				this.projects = projects;
+				if (email == 'user@user.com') {
+					if (window.sessionStorage.getItem('FG') == 'true') {
+						window.sessionStorage.setItem('FG', 'false');
+						this.projects.find((project: Project) => project.id == 3)!.img = "./assets/images/google.png";
+					}
+					if (window.sessionStorage.getItem('FM') == 'true') {
+						window.sessionStorage.setItem('FM', 'false');
+						this.projects.find((project: Project) => project.id == 4)!.img = "./assets/images/meli.png";
+					}
+				}
 			});
 		});
 	}
@@ -56,6 +67,7 @@ export class ProjectComponent implements OnInit {
 
 		this.personSvc.getOneByUserEmail(email).subscribe((personData: any) => {
 			this.projectSvc.create(new Project(form.value.title, form.value.description, form.value.link, form.value.finish, new Person('', '', '', '', '', personData.id))).subscribe();
+			this.ngOnInit();
 		});
 	}
 
@@ -64,6 +76,7 @@ export class ProjectComponent implements OnInit {
 		if (this.tokenSvc.isExpired()) { return }
 
 		confirm("Are you sure you want to delete this education?") ? this.projectSvc.deleteById(project_id).subscribe() : null;
+		this.ngOnInit();
 	}
 
 	onFakeProjectUpdate(form: any, image: HTMLInputElement): void {
@@ -79,7 +92,11 @@ export class ProjectComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.projectSvc.update(project_id, project).subscribe();
+		this.projectSvc.update(project_id, project).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 	onImageUpdate(form: any, image: HTMLInputElement) {
@@ -90,11 +107,18 @@ export class ProjectComponent implements OnInit {
 		const file: File = image.files![0];
 
 		if (file == null) { return }
-		if (file.size > 10000000) { return }
-		let filename = file.name;
+		if (file.size > 10000000) {
+			alert("Ingresa una imagen de menor tamaño")
+			return
+		}
+
 		const formData = new FormData();
 
 		formData.append('image', file);
-		this.projectSvc.uploadImage(form.value.id, formData).subscribe();
+		this.projectSvc.uploadImage(form.value.id, formData).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 }

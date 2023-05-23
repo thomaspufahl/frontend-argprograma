@@ -62,23 +62,24 @@ export class EmploymentComponent implements OnInit {
 			(person: Person) => {
 				person.id
 				this.employmentSvc.create(new Employment(form.value.position, form.value.employeer, form.value.start, form.value.end, new Person('', '', '', '', '', person.id))).subscribe();
+				this.ngOnInit();
 			}
 		);
-
 	}
 
 	addResponsibility(form: any): void {
-		console.log(form.value);
 		this.employmentSvc.createResponsibility(new Responsibility(form.value.description), form.value.id).subscribe();
+		this.ngOnInit();
 	}
 
 	deleteThisEmployment(employment_id: number) {
 		confirm("Are you sure you want to delete this employment? This option includes responsibilities") ? this.employmentSvc.deleteById(employment_id).subscribe() : null;
-
+		this.ngOnInit();
 	}
 
 	deleteThisResponsibility(responsibility_id: number) {
 		confirm("Are you sure you want to delete this responsibility?") ? this.employmentSvc.deleteResponsibilityById(responsibility_id).subscribe() : null;
+		this.ngOnInit();
 	}
 
 	onFakeEmploymentUpdate(form: any): void {
@@ -94,7 +95,11 @@ export class EmploymentComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.employmentSvc.update(employment_id, employment).subscribe();
+		this.employmentSvc.update(employment_id, employment).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 
 	onFakeResponsibilityUpdate(form: any): void {
@@ -113,6 +118,10 @@ export class EmploymentComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.employmentSvc.updateResponsibility(responsibility_id, responsibility).subscribe();
+		this.employmentSvc.updateResponsibility(responsibility_id, responsibility).subscribe(
+			() => {
+				this.ngOnInit();
+			}
+		);
 	}
 }
