@@ -13,15 +13,7 @@ export class UserComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isLogged = this.router.url.includes('logged') ? true : false;
-		if (window.sessionStorage.getItem('TM') == 'true') {
-			window.sessionStorage.setItem('TM', 'false');
-			this.sleep(4000).then(() => {
-				this.refresh();
-			});
-		}
 	}
-
-	sleep = (milliseconds: number) => new Promise((r) => setTimeout(r, milliseconds));
 
 	refresh(): void {
 		window.location.reload();

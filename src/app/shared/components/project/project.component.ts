@@ -43,16 +43,6 @@ export class ProjectComponent implements OnInit {
 
 			this.projectSvc.getListByPerson(this.person).subscribe((projects: Project[]) => {
 				this.projects = projects;
-				if (email == 'user@user.com') {
-					if (window.sessionStorage.getItem('FG') == 'true') {
-						window.sessionStorage.setItem('FG', 'false');
-						this.projects.find((project: Project) => project.id == 3)!.img = "./assets/images/google.png";
-					}
-					if (window.sessionStorage.getItem('FM') == 'true') {
-						window.sessionStorage.setItem('FM', 'false');
-						this.projects.find((project: Project) => project.id == 4)!.img = "./assets/images/meli.png";
-					}
-				}
 			});
 		});
 	}

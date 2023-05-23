@@ -34,20 +34,7 @@ export class ProfileComponent implements OnInit {
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
 			if (personData.description != null) { this.person.setDescription(personData.description); }
 			if (personData.banner != null) { this.person.setBanner(personData.banner); }
-			else if (email == 'user@user.com') { this.person.setBanner("./assets/images/banner.jpg") }
 			if (personData.avatar != null) { this.person.setAvatar(personData.avatar); }
-			else if (email == 'user@user.com') { this.person.setAvatar("./assets/images/user.png") }
-
-			if (email == 'user@user.com') {
-				if (window.sessionStorage.getItem('A') == 'true') {
-					window.sessionStorage.setItem('A', 'false');
-					this.person.setAvatar("./assets/images/user.png");
-				}
-				if (window.sessionStorage.getItem('B') == 'true') {
-					window.sessionStorage.setItem('B', 'false');
-					this.person.setAvatar("./assets/images/banner.jpg");
-				}
-			}
 		});
 	}
 
