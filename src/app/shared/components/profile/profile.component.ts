@@ -27,16 +27,27 @@ export class ProfileComponent implements OnInit {
 		if (!this.tokenSvc.existsToken()) { return }
 		if (this.tokenSvc.isExpired()) { return }
 
-		this.personSvc.getOneByUserEmail(this.tokenSvc.getSubject()).subscribe((personData: Person) => {
+		let email = this.tokenSvc.getSubject()
+		this.personSvc.getOneByUserEmail(email).subscribe((personData: Person) => {
 			this.person.setId(personData.id);
 			if (personData.firstname != null) { this.person.setFirstname(personData.firstname); }
 			if (personData.lastname != null) { this.person.setLastname(personData.lastname); }
 			if (personData.description != null) { this.person.setDescription(personData.description); }
 			if (personData.banner != null) { this.person.setBanner(personData.banner); }
-			else { this.person.setBanner("https://picsum.photos/1920/1080") }
+			else if (email == 'user@user.com') { this.person.setBanner("./assets/images/banner.jpg") }
 			if (personData.avatar != null) { this.person.setAvatar(personData.avatar); }
-			else { this.person.setAvatar("https://picsum.photos/1920/1080") }
+			else if (email == 'user@user.com') { this.person.setAvatar("./assets/images/user.png") }
 
+			if (email == 'user@user.com') {
+				if (window.sessionStorage.getItem('A') == 'true') {
+					window.sessionStorage.setItem('A', 'false');
+					this.person.setAvatar("./assets/images/user.png");
+				}
+				if (window.sessionStorage.getItem('B') == 'true') {
+					window.sessionStorage.setItem('B', 'false');
+					this.person.setAvatar("./assets/images/banner.jpg");
+				}
+			}
 		});
 	}
 
