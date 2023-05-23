@@ -6,6 +6,7 @@ const FM: boolean = true;
 const FG: boolean = true;
 const A: boolean = true;
 const B: boolean = true;
+const TM: boolean = true;
 
 @Injectable({
 	providedIn: 'root'
@@ -38,6 +39,7 @@ export class TokenService {
 		window.sessionStorage.setItem('FG', FG.toString());
 		window.sessionStorage.setItem('A', A.toString());
 		window.sessionStorage.setItem('B', B.toString());
+		window.sessionStorage.setItem('TM', TM.toString());
 	}
 
 	public removeToken(): void {
